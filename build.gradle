@@ -10,6 +10,16 @@ task describe{
     println "Project Description ${project.description} "
     }
 }
+task printInformations {
+    dependsOn parseJson
+    doLast{
+    println "${project.ext.data.model}"
+    }
+}
+task ("recupParametreCli"){
+    println "${projectName}"
+}
+
 task parseJson {
     doLast {
         def jsonFile = file('projet.json')
@@ -19,17 +29,8 @@ task parseJson {
         // println parsedJson.project.model
     }
 }
-task printInformations {
-    dependsOn parseJson
-    doLast{
-    println "${project.ext.data.model}"
-    }
-}
 // tache qui affiche un parametre de ligne de commande et dont le nom est un parametre
 
-task ("recupParametreCli"){
-    println "${projectName}"
-}
 task copyTemplate(type: Copy) {
        
         from 'templates/'
@@ -44,5 +45,6 @@ task copySimple {
         }
     }
 }
+// autre methode pour définir un dépendance
 copySimple.dependsOn parseJson
 
