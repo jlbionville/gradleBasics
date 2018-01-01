@@ -1,0 +1,43 @@
+
+plugins {
+    id 'base'
+}
+description = 'mon projet gradle pour gérer les templates techniques'
+version = '1.0'
+task describe{
+    doLast{
+        
+    println "Project Description ${project.description}"
+    }
+}
+task parseJson {
+    doLast {
+        def jsonFile = file('projet.json')
+        def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
+        project.ext.data=parsedJson.project
+        println project.ext.data
+        println parsedJson.project.model
+    }
+}
+task printInformations {
+    dependsOn parseJson
+    doLast{
+    println "${project.ext.data.model}"
+    }
+}
+task copyTemplate(type: Copy) {
+       
+        from 'templates/'
+        into 'dest'
+    
+}
+task copySimple {
+    doLast{
+        copy {
+            from "templates/${project.ext.data.model}"
+            into 'dest'
+        }
+    }
+}
+copySimple.dependsOn parseJson
+
