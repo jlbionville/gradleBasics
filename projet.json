@@ -1,0 +1,8 @@
+{
+	"project":
+	{
+	"name":"testAsible",
+	"model":"ansible",
+	"version":1.0
+	}
+}
