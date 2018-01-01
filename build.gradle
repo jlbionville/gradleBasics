@@ -43,10 +43,16 @@ task copyTemplate(type: Copy) {
     
 }
 task copySimple {
+    doFirst{
+        if (!project.hasProperty('projectName'))
+        {
+            throw new GradleException('error occurred')
+        }
+    }
     doLast{
         copy {
             from "templates/${project.ext.data.model}"
-            into 'dest'
+            into 'dest/${project.projectName}'
         }
     }
 }
@@ -54,7 +60,7 @@ clean {
     delete 'dest'
 }
 // autre methode pour définir un dépendance
-copySimple.dependsOn parseJson
+copySimple.dependsOn parseJson,clean
 
 
 
