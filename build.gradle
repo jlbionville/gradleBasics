@@ -45,6 +45,9 @@ task copySimple {
         }
     }
 }
+clean {
+    delete 'dest'
+}
 // autre methode pour définir un dépendance
 copySimple.dependsOn parseJson
 
