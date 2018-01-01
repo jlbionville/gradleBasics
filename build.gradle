@@ -10,15 +10,6 @@ task describe{
     println "Project Description ${project.description} "
     }
 }
-task printInformations {
-    dependsOn parseJson
-    doLast{
-    println "${project.ext.data.model}"
-    }
-}
-task ("recupParametreCli"){
-    println "${projectName}"
-}
 
 task parseJson {
     doLast {
@@ -29,6 +20,17 @@ task parseJson {
         // println parsedJson.project.model
     }
 }
+task printInformations {
+    dependsOn parseJson
+    doLast{
+    println "${project.ext.data.model}"
+    }
+}
+task ("recupParametreCli"){
+    println "${projectName}"
+}
+
+
 // tache qui affiche un parametre de ligne de commande et dont le nom est un parametre
 
 task copyTemplate(type: Copy) {
