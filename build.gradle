@@ -27,7 +27,10 @@ task printInformations {
     }
 }
 task ("recupParametreCli"){
+    onlyIf{
+
     println "${projectName}"
+    }
 }
 
 
@@ -52,4 +55,6 @@ clean {
 }
 // autre methode pour définir un dépendance
 copySimple.dependsOn parseJson
+
+
 
