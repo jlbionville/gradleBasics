@@ -7,7 +7,7 @@ version = '1.0'
 task describe{
     doLast{
         
-    println "Project Description ${project.description}"
+    println "Project Description ${project.description} "
     }
 }
 task parseJson {
@@ -24,6 +24,11 @@ task printInformations {
     doLast{
     println "${project.ext.data.model}"
     }
+}
+// tache qui affiche un parametre de ligne de commande et dont le nom est un parametre
+
+task ("recupParametreCli"){
+    println "${projectName}"
 }
 task copyTemplate(type: Copy) {
        
