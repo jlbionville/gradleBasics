@@ -15,8 +15,8 @@ task parseJson {
         def jsonFile = file('projet.json')
         def parsedJson = new groovy.json.JsonSlurper().parseText(jsonFile.text)
         project.ext.data=parsedJson.project
-        println project.ext.data
-        println parsedJson.project.model
+        // println project.ext.data
+        // println parsedJson.project.model
     }
 }
 task printInformations {
